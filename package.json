@@ -1,0 +1,30 @@
+{
+  "name": "freelance-rate-js",
+  "version": "1.0.0",
+  "description": "Calculate the hourly rate you need to charge as a freelancer. Zero dependencies, runs via npx straight from GitHub.",
+  "bin": {
+    "freelance-rate": "./index.js"
+  },
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "engines": {
+    "node": ">=16"
+  },
+  "license": "MIT",
+  "author": "kleogeos",
+  "keywords": [
+    "freelance",
+    "cli",
+    "rate-calculator",
+    "hourly-rate",
+    "zero-dependencies",
+    "npx"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kleogeos/freelance-rate-js"
+  },
+  "homepage": "https://kleogeos.github.io/freelancer-tools/"
+}
