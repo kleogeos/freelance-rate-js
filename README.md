@@ -1,5 +1,7 @@
 # freelance-rate-js
 
+[![test](https://github.com/kleogeos/freelance-rate-js/actions/workflows/test.yml/badge.svg)](https://github.com/kleogeos/freelance-rate-js/actions/workflows/test.yml)
+
 Calculate the hourly rate you need to charge as a freelancer. Zero
 dependencies — a direct Node.js port of
 [freelance-rate-cli](https://github.com/kleogeos/freelance-rate-cli) (Python),
