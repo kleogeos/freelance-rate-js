@@ -65,7 +65,7 @@ npm test
 ## Where this fits
 
 Part of a small set of zero-dependency freelancer tools, including a growing
-growing set of `npx`-runnable ports: [freelance-invoice-js](https://github.com/kleogeos/freelance-invoice-js)
+set of `npx`-runnable ports: [freelance-invoice-js](https://github.com/kleogeos/freelance-invoice-js)
 (invoice generator) and [contract-checklist-js](https://github.com/kleogeos/contract-checklist-js)
 (contract clause scanner), same `npx github:...` pattern. Also:
 [freelance-rate-cli](https://github.com/kleogeos/freelance-rate-cli) (Python,
