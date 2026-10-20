@@ -1,13 +1,37 @@
 #!/usr/bin/env node
 "use strict";
 
+// Correctly-rounded cents (ties-to-even) from the exact binary value of a
+// double -- a naive Math.round(n*100)/100 can manufacture a spurious tie
+// that Python's round(n, 2) (rounding from the true binary value) would not.
+function round2(n) {
+  if (n === 0) return 0;
+  const neg = n < 0;
+  const ax = Math.abs(n);
+  const s = ax.toFixed(20);
+  const [intPart, fracPart] = s.split(".");
+  const keep = fracPart.slice(0, 2);
+  const rest = fracPart.slice(2);
+  let roundUp;
+  if (rest[0] > "5") roundUp = true;
+  else if (rest[0] < "5") roundUp = false;
+  else {
+    const restAfter = rest.slice(1).replace(/0+$/, "");
+    if (restAfter.length > 0) roundUp = true;
+    else roundUp = parseInt(keep[1] || "0", 10) % 2 === 1;
+  }
+  let keepNum = BigInt(intPart + keep.padEnd(2, "0"));
+  if (roundUp) keepNum += 1n;
+  const result = Number(keepNum) / 100;
+  return neg ? -result : result;
+}
+
 function compute(net, taxPct, expenses, bufferPct, weeksOff, hoursPerWeek, billablePct) {
   const tax = Math.min(taxPct, 80) / 100;
   const gross = (net / (1 - tax) + expenses) * (1 + bufferPct / 100);
   const weeks = Math.max(52 - weeksOff, 1);
   const billableHours = (weeks * hoursPerWeek * Math.min(Math.max(billablePct, 1), 100)) / 100;
   const rate = gross / billableHours;
-  const round2 = (n) => Math.round(n * 100) / 100;
   return {
     hourly_rate: round2(rate),
     revenue_needed_per_year: round2(gross),
